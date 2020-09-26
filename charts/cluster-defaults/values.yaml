@@ -1,3 +1,4 @@
 # We need to make sure that CRDs are installed
 cert-manager:
   installCRDs: "true"
+
