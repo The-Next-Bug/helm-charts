@@ -3,6 +3,23 @@ entries:
   cluster-defaults:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2020-09-26T20:03:57.347114968Z"
+    dependencies:
+    - name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 3.3.0
+    - name: cert-manager
+      repository: https://charts.jetstack.io
+      version: 1.0.2
+    description: A set of default services for ingres and certificate management.
+    digest: 63e452432e92ee2b603751775e027d1fac0a4553599231a324dd1e0ec6cbf1f3
+    name: cluster-defaults
+    type: application
+    urls:
+    - https://github.com/The-Next-Bug/helm-charts/releases/download/cluster-defaults-0.1.1/cluster-defaults-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2020-09-26T18:39:00.125550128Z"
     dependencies:
     - name: ingress-nginx
@@ -17,5 +34,16 @@ entries:
     type: application
     urls:
     - https://github.com/The-Next-Bug/helm-charts/releases/download/cluster-defaults-0.1.0/cluster-defaults-0.1.0.tgz
+    version: 0.1.0
+  cluster-issuers:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-09-26T20:03:57.464846804Z"
+    description: A hack to allow the definition of Cert-Manager ClusterIssuers
+    digest: 8e60aaebf43c5d65cd95a2e22ba7bf4319d1eda2fff5a9cbb1768b5ecc0e75ba
+    name: cluster-issuers
+    type: application
+    urls:
+    - https://github.com/The-Next-Bug/helm-charts/releases/download/cluster-issuers-0.1.0/cluster-issuers-0.1.0.tgz
     version: 0.1.0
 generated: "2020-09-26T18:38:59.922209633Z"
