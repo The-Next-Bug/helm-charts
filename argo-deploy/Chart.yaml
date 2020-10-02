@@ -1,0 +1,15 @@
+apiVersion: v2
+name: argo-deploy
+description: Argo Root app for app of apps
+
+type: application
+version: 0.1.0
+appVersion: 0.1.0
+
+dependencies:
+  - name: cluster-defaults
+    repository: "https://the-next-bug.github.io/helm-charts"
+    version: "0.1.1"
+  - name: cluster-issuers
+    repository: "https://the-next-bug.github.io/helm-charts"
+    version: "0.1.0"
