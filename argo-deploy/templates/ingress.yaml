@@ -8,7 +8,7 @@ metadata:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-ingress
+  name: ingress
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
