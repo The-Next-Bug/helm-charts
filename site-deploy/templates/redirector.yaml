@@ -23,7 +23,7 @@ spec:
           image: registry.digitalocean.com/shelf/redirector
           env:
             - name: REDIRECTOR_TARGET
-              value: "https://$domainrequest_uri"
+              value: "https://$domain$request_uri"
           ports:
             - containerPort: 80
       imagePullSecrets:
