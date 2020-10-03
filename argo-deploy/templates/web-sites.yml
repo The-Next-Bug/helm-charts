@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-sites 
+  namespace: argocd
+  # This needs to happen after cert-manager and it's crds are installed
+  annotations:
+    {{- include "global.application.annotations" . }}
+    argocd.argoproj.io/sync-wave: "20"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    namespace: web-sites
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: https://github.com/The-Next-Bug/do-image-builder 
+    targetRevision: "master"
+    path: "charts/site-deploy"
+ 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
+
+
