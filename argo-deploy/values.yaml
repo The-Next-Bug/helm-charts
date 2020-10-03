@@ -9,3 +9,7 @@ spec:
 # Email Address for use in ClusterIssuers
 email: "someone@example.com"
 
+global:
+  application:
+    annotations:
+      argocd.argoproj.io/sync-options: CreateNamespace=True Prune=True 
