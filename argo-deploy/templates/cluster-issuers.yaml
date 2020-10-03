@@ -12,7 +12,7 @@ metadata:
   namespace: argocd
   # This needs to happen after cert-manager and it's crds are installed
   annotations:
-    {{- include "global.application.annotations" }}
+    {{- include "global.application.annotations" . }}
     argocd.argoproj.io/sync-wave: "20"
   finalizers:
   - resources-finalizer.argocd.argoproj.io

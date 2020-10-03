@@ -11,7 +11,7 @@ metadata:
   name: ingress
   namespace: argocd
   annotations:
-    {{- include "global.application.annotations" }}
+    {{- include "global.application.annotations" . }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:

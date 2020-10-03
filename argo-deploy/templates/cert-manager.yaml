@@ -11,7 +11,7 @@ metadata:
   name: cert-manager
   namespace: argocd
   annotations:
-    {{- include "global.application.annotations" }}
+    {{- include "global.application.annotations" . }}
     argocd.argoproj.io/sync-wave: "10"
   finalizers:
   - resources-finalizer.argocd.argoproj.io
