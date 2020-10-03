@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-ingress
+spec:
+  project: default
+  destination:
+    namespace: helm-guestbook
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: https://github.com/The-Next-Bug/helm-charts.git
+    targetRevision: HEAD
+    path: "argo-deploy"
+    helm:
+      repoURL: https://kubernetes.github.io/ingress-nginx
+      chart: ingress-nginx
+      chartVersion: "3.3.0"
