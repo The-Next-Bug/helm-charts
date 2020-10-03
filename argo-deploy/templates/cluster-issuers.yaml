@@ -29,5 +29,10 @@ spec:
     helm:
       values: |
         email: {{ .Values.email }}
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
 
 

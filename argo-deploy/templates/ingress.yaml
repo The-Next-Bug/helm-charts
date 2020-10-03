@@ -36,4 +36,8 @@ spec:
               use-forwarded-headers: "true"
               compute-full-forwarded-for: "true"
               use-proxy-protocol: "true"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
 

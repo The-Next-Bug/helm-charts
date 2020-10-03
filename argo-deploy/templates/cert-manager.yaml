@@ -25,3 +25,8 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     path: "cert-manager"
 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
+
