@@ -3,7 +3,7 @@ domains:
   - name: "chrissalch.com"
     image: "registry.digitalocean.com/shelf/chrissalch-com"
   - name: "thenextbug.com"
-    image: "registry.digitalocean.com/shelf/the-next-bug-com"
+    image: "registry.digitalocean.com/shelf/the-next-bug"
 
 #  - name: "segmentnine.com"
 #  - name: "seg9.com"
