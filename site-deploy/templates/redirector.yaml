@@ -1,33 +1,31 @@
-{{- range .Values.domains }}
-{{- if .image }} 
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "kube-name" . }}
+  name: "www-redirector" 
   labels:
-    app: {{ include "kube-name" . }}
+    app: "www-redirector"
 
 spec:
   replicas: {{ .replicas |  default 1 }}
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: {{ include "kube-name" . }}
+      app: "www-redirector"
 
   template:
     metadata:
       labels:
-        app: {{ include "kube-name" . }}
+        app: "www-redirector"
 
     spec:
       containers:
-        - name: {{ include "kube-name" . }}
-          image: "{{ .image }}"
+        - name: "www-redirector"
+          image: registry.digitalocean.com/shelf/redirector
+          env:
+            - name: REDIRECTOR_TARGET
+              value: "https://$host$request_uri"
           ports:
             - containerPort: 80
       imagePullSecrets:
         - name: do-registry
 
-{{- end }}
-{{- end }}

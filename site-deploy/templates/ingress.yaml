@@ -20,6 +20,12 @@ spec:
           - backend:
               serviceName: {{ include "kube-name" . }}
               servicePort: 8080
+    - host: "www.{{ .name }}"
+      http:
+        paths:
+          - backend:
+              serviceName: "www-redirector"
+              servicePort: 8080
     {{- range .rules }}
       {{ . | nindent 6 }}
     {{- end }}
