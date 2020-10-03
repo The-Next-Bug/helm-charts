@@ -20,12 +20,9 @@ spec:
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-      #path: "argo-deploy"
-    helm:
-      repoURL: https://kubernetes.github.io/ingress-nginx
-      chart: ingress-nginx
-      chartVersion: "3.3.0"
+    path: "ingress"
 
+    helm:
       values: |
         ingress-nginx:
           controller:
