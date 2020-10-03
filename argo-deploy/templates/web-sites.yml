@@ -15,7 +15,7 @@ spec:
     namespace: web-sites
     server: {{ .Values.spec.destination.server }}
   source:
-    repoURL: https://github.com/The-Next-Bug/do-image-builder 
+    repoURL: https://github.com/The-Next-Bug/do-image-builder.git 
     targetRevision: "master"
     path: "charts/site-deploy"
  
