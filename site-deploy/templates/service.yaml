@@ -3,10 +3,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "kube-name" . }}-service
+  name: {{ include "kube-name" . }}
 spec:
   selector:
-    app: {{ include "kube-name" . }}-static
+    app: {{ include "kube-name" . }}
   ports:
     - protocol: TCP
       port: 80
