@@ -1,4 +1,7 @@
 spec:
   destination:
     server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/The-Next-Bug/helm-charts.git
+    targetRevision: HEAD
 
