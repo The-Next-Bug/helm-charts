@@ -4,24 +4,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ .name }}"
+  name: {{ include "kube-name" . }}
   labels:
-    app: "{{ .name }}"
+    app: {{ include "kube-name" . }}
 
 spec:
   replicas: {{ .replicas |  default 1 }}
   selector:
     matchLabels:
-      app: "{{ .name }}"
+      app: {{ include "kube-name" . }}
 
   template:
     metadata:
       labels:
-        app: "{{ .name }}"
+        app: {{ include "kube-name" . }}
 
     spec:
       containers:
-        - name: "{{ .name }}"
+        - name: {{ include "kube-name" . }}
           image: "{{ .image }}"
           ports:
             - containerPort: 80

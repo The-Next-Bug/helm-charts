@@ -1,4 +1,11 @@
 {{/*
+Converts dns name to suitable kube name field.
+*/}}
+{{- define "kube-name" -}}
+{{- .name | replace "." "-" }}
+{{- end -}}
+
+{{/*
 Expand the name of the chart.
 */}}
 {{- define "site-deploy.name" -}}
