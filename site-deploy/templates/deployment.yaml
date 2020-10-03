@@ -25,7 +25,7 @@ spec:
           image: "{{ .image }}"
           ports:
             - containerPort: 80
-          image_pull_secretes:
+          imagePullSecretes:
             - name: do-registry
 
 {{- end }}
