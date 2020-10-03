@@ -1,0 +1,9 @@
+# Email to use when communicating with LetsEncrypt. 
+email: "noone@example.com"
+
+digitalocean:
+  # Name of secret contain Digital Ocean access token.
+  token_name: "digitalocean-dns"
+  
+  # Key within secret that contains the Digital Ocean access token.
+  token_key: "access-token" 
