@@ -29,9 +29,14 @@ spec:
         ingress-nginx:
           controller:
             service:
-              annotations:
-                service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-                service.beta.kubernetes.io/do-loadbalancer-name: "dev-cluster"
+              type: NodePort
+              nodePorts:
+                http: 30080
+                https: 30443
+
+#              annotations:
+#                service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+#                service.beta.kubernetes.io/do-loadbalancer-name: "dev-cluster"
             config:
               use-forwarded-headers: "true"
               compute-full-forwarded-for: "true"
