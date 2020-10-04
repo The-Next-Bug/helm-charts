@@ -26,6 +26,10 @@ spec:
           image: "{{ .image }}"
           ports:
             - containerPort: 80
+          env:
+          {{- if .env }}
+          {{- toYaml .env | nindent 12 }}
+          {{- end }}
       imagePullSecrets:
         - name: do-registry
 

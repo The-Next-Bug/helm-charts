@@ -5,6 +5,12 @@ domains:
   - name: "thenextbug.com"
     image: "registry.digitalocean.com/shelf/the-next-bug"
 
+  - name: "erasableman.com"
+    image: registry.digitalocean.com/shelf/redirector
+    env:
+      - name: REDIRECTOR_TARGET
+        value: https://www.amazon.com/dp/B07147WSCY
+
 #  - name: "segmentnine.com"
 #  - name: "seg9.com"
 #  - name: "shinybitsnpieces.com"
@@ -13,4 +19,3 @@ domains:
 #  - name: "arlaneenalra.com"
 #  - name: "simplegomoku.com"
 #  - name: "severeeyetrauma.com"
-#  - name: "erasableman.com"
