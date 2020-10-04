@@ -1,21 +1,47 @@
 
 domains:
+  # Personal Site
   - name: "chrissalch.com"
     image: "registry.digitalocean.com/shelf/chrissalch-com"
-  - name: "thenextbug.com"
-    image: "registry.digitalocean.com/shelf/the-next-bug"
 
+  # Some Other domains
+  - name: "kc5vzm.com"
+    image: registry.digitalocean.com/shelf/redirector
+    env:
+      - name: REDIRECTOR_TARGET
+        value: https://chrissalch.com
+  - name: "arlaneenalra.com"
+    image: registry.digitalocean.com/shelf/redirector
+    env:
+      - name: REDIRECTOR_TARGET
+        value: https://chrissalch.com
+
+  # The Erasable Man Generic redirect
   - name: "erasableman.com"
     image: registry.digitalocean.com/shelf/redirector
     env:
       - name: REDIRECTOR_TARGET
         value: https://www.amazon.com/dp/B07147WSCY
 
+
+  # The Next Bug Site
+  - name: "thenextbug.com"
+    image: "registry.digitalocean.com/shelf/the-next-bug"
+
+  # Some Old Domains 
+  - name: "simplegomoku.com"
+    image: registry.digitalocean.com/shelf/redirector
+    env:
+      - name: REDIRECTOR_TARGET
+        value: https://thenextbug.com
+  - name: "severeeyetrauma.com"
+    image: registry.digitalocean.com/shelf/redirector
+    env:
+      - name: REDIRECTOR_TARGET
+        value: https://thenextbug.com
+
+
 #  - name: "segmentnine.com"
 #  - name: "seg9.com"
 #  - name: "shinybitsnpieces.com"
 #  - name: "shinybitsnpieces.net"
-#  - name: "kc5vzm.com"
-#  - name: "arlaneenalra.com"
-#  - name: "simplegomoku.com"
-#  - name: "severeeyetrauma.com"
