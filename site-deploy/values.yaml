@@ -40,8 +40,27 @@ domains:
       - name: REDIRECTOR_TARGET
         value: https://thenextbug.com
 
+  - name: "segmentnine.com"
+    image: registry.digitalocean.com/shelf/redirector
+    env:
+      - name: REDIRECTOR_TARGET
+        value: https://thenextbug.com
 
-#  - name: "segmentnine.com"
-#  - name: "seg9.com"
-#  - name: "shinybitsnpieces.com"
-#  - name: "shinybitsnpieces.net"
+  - name: "seg9.com"
+    image: registry.digitalocean.com/shelf/redirector
+    env:
+      - name: REDIRECTOR_TARGET
+        value: https://thenextbug.com
+
+  - name: "shinybitsnpieces.com"
+    image: registry.digitalocean.com/shelf/redirector
+    env:
+      - name: REDIRECTOR_TARGET
+        value: https://thenextbug.com
+
+  - name: "shinybitsnpieces.net"
+    image: registry.digitalocean.com/shelf/redirector
+    env:
+      - name: REDIRECTOR_TARGET
+        value: https://thenextbug.com
+
