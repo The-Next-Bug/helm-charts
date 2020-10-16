@@ -1,5 +1,7 @@
+{{- $root := . -}}
 {{- range .Values.domains }}
 {{- if .image }} 
+{{- $tag := .image | replace "/" "-" | $root.Files.Get | trim -}}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -23,7 +25,7 @@ spec:
     spec:
       containers:
         - name: {{ include "kube-name" . }}
-          image: "{{ .image }}"
+          image: "{{ .image }}{{- if $tag }}:{{ $tag }}{{- end -}}"
           ports:
             - containerPort: 80
           env:
