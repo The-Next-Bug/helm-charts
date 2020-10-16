@@ -1,7 +1,7 @@
 {{- $root := . -}}
 {{- range .Values.domains }}
 {{- if .image }} 
-{{- $tag := .image | replace "/" "-" | $root.Files.Get | trim -}}
+{{- $tag := .image | replace "/" "-" | $root.Files.Get | trim }}
 ---
 apiVersion: apps/v1
 kind: Deployment
