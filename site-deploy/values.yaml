@@ -21,7 +21,9 @@ domains:
     image: registry.digitalocean.com/shelf/redirector
     env:
       - name: REDIRECTOR_TARGET
-        value: https://www.amazon.com/dp/B07147WSCY
+        value: https://chrissalch.com
+      #      - name: REDIRECTOR_TARGET
+      #  value: https://www.amazon.com/dp/B07147WSCY
 
 
   # The Next Bug Site
