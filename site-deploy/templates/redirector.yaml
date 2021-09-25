@@ -10,7 +10,8 @@ data:
   000_default.conf: |
     server {
       listen 8080;
-      server_name ~^(www\.|)(?<domain>.+)$;
+      #server_name ~^(www\.|)(?<domain>.+)$;
+      server_name: _;
 
       rewrite ^.*$ https://$domain$request_uri redirect;
     }
