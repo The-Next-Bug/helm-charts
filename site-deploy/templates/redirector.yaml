@@ -9,14 +9,15 @@ data:
   # Default www redirect
   000_default.conf: |
     server {
+      listen 8080;
       server_name ~^www\.(?<domain>.+)$;
-      server_name _;
 
       rewrite ^.*$ https://$domain$request_uri redirect;
     }
   {{- range .Values.redirects }}
   {{ .name }}.conf: |
     server {
+      listen 8080;
       server_name ~^(www\.|){{ .name | replace "." "\\." }}$;
 
       rewrite ^.*$ {{ .target }} redirect;
@@ -54,7 +55,6 @@ data:
 
         access_log  /var/log/nginx/access.log  main;
 
-        listen 8080;
         sendfile        on;
         #tcp_nopush     on;
 
