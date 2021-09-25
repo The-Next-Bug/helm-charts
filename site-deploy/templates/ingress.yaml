@@ -1,7 +1,7 @@
 {{- $domainList := concat .Values.domains .Values.redirects -}} 
 {{- range $domainList }}
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata: 
   name: {{ include "kube-name" . }}
@@ -19,14 +19,21 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: {{ include "kube-name" . }}
-              servicePort: 8080
+              service:
+                port:
+                  number: 8080
+                selector:
+                  matchLabels:
+                    {{ include "kube-name" . }}: true
+
     - host: "www.{{ .name }}"
       http:
         paths:
           - backend:
-              serviceName: "redirector"
-              servicePort: 8080
+              service:
+                name: "redirector"
+                port:
+                  number: 8080
     {{- range .rules }}
       {{ . | nindent 6 }}
     {{- end }}
