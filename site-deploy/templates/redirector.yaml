@@ -96,7 +96,7 @@ spec:
               mountPath: /etc/nginx/conf.d/ 
               readOnly: true
             - name: nginx-conf
-              mountPath: /etc/nginx.conf
+              mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
       volumes:
         - name: templates
