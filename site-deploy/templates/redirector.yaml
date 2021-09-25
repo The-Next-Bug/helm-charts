@@ -51,7 +51,7 @@ spec:
           volumeMounts:
             - name: templates
               mountPath: /etc/nginx/conf.d/ 
-              readonly: true
+              readOnly: true
       volumes:
         - name: templates
           configMap:
