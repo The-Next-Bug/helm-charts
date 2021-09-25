@@ -64,8 +64,9 @@ spec:
         - "www.{{ .name }}"
 
   defaultBackend:
-    kind: ConfigMap
-    name: redirect-404
+    resource:
+      kind: ConfigMap
+      name: redirect-404
 
 #  rules:
 #    - host: {{ .name }}
