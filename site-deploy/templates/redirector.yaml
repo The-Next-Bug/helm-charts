@@ -7,7 +7,7 @@ metadata:
     app: "redirector"
 data:
   # Default www redirect
-  default.conf: |
+  000_default.conf: |
     server {
       listen 8080;
       server_name ~^(www\.|)(?<domain>.+)$;
@@ -24,6 +24,47 @@ data:
       rewrite ^.*$ {{ .target }} redirect;
     }
   {{- end}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "redirector-nginx-conf"
+  labels:
+    app: "redirector"
+data:
+  nginx.conf: |
+    user  nginx;
+    worker_processes  auto;
+
+    error_log  /var/log/nginx/error.log notice;
+    pid        /var/run/nginx.pid;
+
+
+    events {
+        worker_connections  1024;
+    }
+
+
+    http {
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+
+        log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for" "$http_x_forwarded_host"'
+                          '"$http_host"';
+
+        access_log  /var/log/nginx/access.log  main;
+
+        sendfile        on;
+        #tcp_nopush     on;
+
+        keepalive_timeout  65;
+
+        #gzip  on;
+
+        include /etc/nginx/conf.d/*.conf;
+    }
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -54,10 +95,16 @@ spec:
             - name: templates
               mountPath: /etc/nginx/conf.d/ 
               readOnly: true
+            - name: nginx-conf
+              mountPath: /etc/nginx.conf
+              subPath: nginx.conf
       volumes:
         - name: templates
           configMap:
             name: "redirector"
+        - name: nginx-conf
+          configMap:
+            name: "redirector-nginx-conf"
 ---
 apiVersion: v1
 kind: Service

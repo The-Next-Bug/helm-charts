@@ -39,13 +39,6 @@ spec:
       {{ . | nindent 6 }}
     {{- end }}
 {{- end }}
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: "redirect-404"
-data:
-  web-sites: ""
 {{- range .Values.redirects  }}
 ---
 apiVersion: networking.k8s.io/v1
@@ -56,7 +49,6 @@ metadata:
     redirector: true
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/temporal-redirect: {{ .target }} 
 spec:
   tls:
     - secretName: "{{ .name }}-tls"
@@ -64,34 +56,29 @@ spec:
         - "{{ .name }}" 
         - "www.{{ .name }}"
 
-  defaultBackend:
-    resource:
-      kind: ConfigMap
-      name: redirect-404
+  rules:
+    - host: {{ .name }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: "redirector"
+                port:
+                  number: 8080
 
-#  rules:
-#    - host: {{ .name }}
-#      http:
-#        paths:
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: "redirector"
-#                port:
-#                  number: 8080
-#
-#    - host: "www.{{ .name }}"
-#      http:
-#        paths:
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: "redirector"
-#                port:
-#                  number: 8080
-#    {{- range .rules }}
-#      {{ . | nindent 6 }}
-#    {{- end }}
+    - host: "www.{{ .name }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: "redirector"
+                port:
+                  number: 8080
+    {{- range .rules }}
+      {{ . | nindent 6 }}
+    {{- end }}
 {{- end }}
