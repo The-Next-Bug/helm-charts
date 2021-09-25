@@ -19,7 +19,7 @@ data:
   {{ .name }}.conf: |
     server {
       listen 8080;
-      server_name ~^(www\.|)(?{{ .name }}.+)$;
+      server_name ~^(www\.|)({{ .name }}.+)$;
     }
   {{- end}}
 ---
