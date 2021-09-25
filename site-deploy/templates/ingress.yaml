@@ -49,6 +49,7 @@ metadata:
     redirector: true
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/temporal-redirect: {{ .target }} 
 spec:
   tls:
     - secretName: "{{ .name }}-tls"
