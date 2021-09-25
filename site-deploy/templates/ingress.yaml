@@ -45,6 +45,7 @@ kind: ConfigMap
 metadata:
   name: "redirect-404"
 data:
+  web-sites:
 {{- range .Values.redirects  }}
 ---
 apiVersion: networking.k8s.io/v1
