@@ -20,6 +20,8 @@ data:
     server {
       listen 8080;
       server_name ~^(www\.|)({{ .name }}.+)$;
+
+      rewrite ^.*$ {{ .target }} redirect;
     }
   {{- end}}
 ---
