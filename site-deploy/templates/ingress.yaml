@@ -1,5 +1,4 @@
-{{- $domainList := concat .Values.domains .Values.redirects -}} 
-{{- range $domainList }}
+{{- range .Values.domains  }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -19,12 +18,49 @@ spec:
       http:
         paths:
           - backend:
+              name: {{ include "kube-name" . }} 
               service:
                 port:
                   number: 8080
-                selector:
-                  matchLabels:
-                    {{ include "kube-name" . }}: true
+
+    - host: "www.{{ .name }}"
+      http:
+        paths:
+          - backend:
+              service:
+                name: "redirector"
+                port:
+                  number: 8080
+    {{- range .rules }}
+      {{ . | nindent 6 }}
+    {{- end }}
+{{- end }}
+{{- range .Values.redirects  }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: {{ include "kube-name" . }}
+  labels:
+    redirector: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - secretName: "{{ .name }}-tls"
+      hosts:
+        - "{{ .name }}" 
+        - "www.{{ .name }}"
+
+  rules:
+    - host: {{ .name }}
+      http:
+        paths:
+          - backend:
+              name: "redirector"
+              service:
+                port:
+                  number: 8080
 
     - host: "www.{{ .name }}"
       http:
