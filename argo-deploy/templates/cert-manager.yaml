@@ -21,8 +21,8 @@ spec:
     namespace: cert-manager
     server: {{ .Values.spec.destination.server }}
   source:
-    repourl: "https://charts.jetstack.io" 
-    targetrevision: "1.5.3"
+    repoURL: "https://charts.jetstack.io" 
+    targetRevision: "1.5.3"
     path: "cert-manager"
 
   helm:
@@ -30,11 +30,6 @@ spec:
       # We need to make sure that CRDs are installed
       cert-manager:
         installCRDs: "true"
-
-#  source:
-#    repourl: {{ .values.spec.source.repourl }}
-#    targetrevision: {{ .values.spec.source.targetrevision }}
-#    path: "cert-manager"
 
   syncPolicy:
     automated:
