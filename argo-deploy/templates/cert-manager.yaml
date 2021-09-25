@@ -22,7 +22,7 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: "https://charts.jetstack.io" 
-    targetRevision: "1.5.3"
+    targetRevision: "v1.5.3"
     chart: "cert-manager"
 
   helm:
