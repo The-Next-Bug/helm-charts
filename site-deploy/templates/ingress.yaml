@@ -57,29 +57,29 @@ spec:
         - "{{ .name }}" 
         - "www.{{ .name }}"
 
-  rules:
-    - host: {{ .name }}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: "redirector"
-                port:
-                  number: 8080
-
-    - host: "www.{{ .name }}"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: "redirector"
-                port:
-                  number: 8080
-    {{- range .rules }}
-      {{ . | nindent 6 }}
-    {{- end }}
+#  rules:
+#    - host: {{ .name }}
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: "redirector"
+#                port:
+#                  number: 8080
+#
+#    - host: "www.{{ .name }}"
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: "redirector"
+#                port:
+#                  number: 8080
+#    {{- range .rules }}
+#      {{ . | nindent 6 }}
+#    {{- end }}
 {{- end }}
