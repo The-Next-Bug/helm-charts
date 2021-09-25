@@ -39,6 +39,12 @@ spec:
       {{ . | nindent 6 }}
     {{- end }}
 {{- end }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "redirect-404"
+data:
 {{- range .Values.redirects  }}
 ---
 apiVersion: networking.k8s.io/v1
@@ -57,7 +63,11 @@ spec:
         - "{{ .name }}" 
         - "www.{{ .name }}"
 
-  rules:
+  defaultBackend:
+    kind: ConfigMap
+    name: redirect-404
+
+#  rules:
 #    - host: {{ .name }}
 #      http:
 #        paths:
