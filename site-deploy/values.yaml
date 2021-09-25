@@ -1,68 +1,38 @@
-
 domains:
   # Personal Site
   - name: "chrissalch.com"
     image: "registry.digitalocean.com/shelf/chrissalch-com"
-
-  # Some Other domains
-  - name: "kc5vzm.com"
-    image: registry.digitalocean.com/shelf/redirector
-    env:
-      - name: REDIRECTOR_TARGET
-        value: https://chrissalch.com
-  - name: "arlaneenalra.com"
-    image: registry.digitalocean.com/shelf/redirector
-    env:
-      - name: REDIRECTOR_TARGET
-        value: https://chrissalch.com
-
-  # The Erasable Man Generic redirect
-  - name: "erasableman.com"
-    image: registry.digitalocean.com/shelf/redirector
-    env:
-      - name: REDIRECTOR_TARGET
-        value: https://chrissalch.com
-      #      - name: REDIRECTOR_TARGET
-      #  value: https://www.amazon.com/dp/B07147WSCY
 
 
   # The Next Bug Site
   - name: "thenextbug.com"
     image: "registry.digitalocean.com/shelf/the-next-bug"
 
+redirects:
   # Some Old Domains 
   - name: "simplegomoku.com"
-    image: registry.digitalocean.com/shelf/redirector
-    env:
-      - name: REDIRECTOR_TARGET
-        value: https://thenextbug.com
+    target: https://thenextbug.com
+
   - name: "severeeyetrauma.com"
-    image: registry.digitalocean.com/shelf/redirector
-    env:
-      - name: REDIRECTOR_TARGET
-        value: https://thenextbug.com
+    target: https://thenextbug.com
 
   - name: "segmentnine.com"
-    image: registry.digitalocean.com/shelf/redirector
-    env:
-      - name: REDIRECTOR_TARGET
-        value: https://thenextbug.com
+    target: https://thenextbug.com
 
   - name: "seg9.com"
-    image: registry.digitalocean.com/shelf/redirector
-    env:
-      - name: REDIRECTOR_TARGET
-        value: https://thenextbug.com
+    target: https://thenextbug.com
 
   - name: "shinybitsnpieces.com"
-    image: registry.digitalocean.com/shelf/redirector
-    env:
-      - name: REDIRECTOR_TARGET
-        value: https://thenextbug.com
+    target: https://thenextbug.com
+  
+  - name: "kc5vzm.com"
+    target: https://chrissalch.com
 
-  - name: "shinybitsnpieces.net"
-    image: registry.digitalocean.com/shelf/redirector
-    env:
-      - name: REDIRECTOR_TARGET
-        value: https://thenextbug.com
+  - name: "arlaneenalra.com"
+    target: https://chrissalch.com
+
+  # The Erasable Man Generic redirect
+  - name: "erasableman.com"
+    target: https://chrissalch.com
+
 

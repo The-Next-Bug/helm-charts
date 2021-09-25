@@ -1,43 +1,70 @@
+{{- $root := . }}
 apiVersion: v1
-kind: Service
+kind: ConfigMap
 metadata:
-  name: "www-redirector"
-spec:
-  selector:
-    app: "www-redirector"
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 80
+  name: "redirector"
+  labels:
+    app: "redirector"
+data:
+  # Default www redirect
+  default.conf: |
+    server {
+      listen 8080;
+      server_name ~^(www\.|)(?<domain>.+)$;
+
+      rewrite ^.*$ https://$domain$request_uri redirect;
+    }
+
+  {{- range .Values.redirects }}
+  {{ .name }}.conf: |
+    server {
+      listen: 8080;
+      server_name ~^(www\.|)(?{{ .name }}.+)$;
+    }
+  {{- end}}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "www-redirector" 
+  name: "redirector" 
   labels:
-    app: "www-redirector"
+    app: "redirector"
 
 spec:
   replicas: {{ .replicas |  default 1 }}
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: "www-redirector"
+      app: "redirector"
 
   template:
     metadata:
       labels:
-        app: "www-redirector"
+        app: "redirector"
 
     spec:
       containers:
-        - name: "www-redirector"
-          image: registry.digitalocean.com/shelf/redirector
-          env:
-            - name: REDIRECTOR_TARGET
-              value: "https://$domain$request_uri"
+        - name: "redirector"
+          image: nginx 
           ports:
-            - containerPort: 80
-      imagePullSecrets:
-        - name: do-registry
-
+            - containerPort: {{ .Values.redirector_port }} 
+          volumeMounts:
+            - name: templates
+              mountPath: /etc/nginx/conf.d/ 
+              readonly: true
+      volumes:
+        - name: templates
+          configMap:
+            name: "rediretor"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "redirector"
+spec:
+  selector:
+    app: "redirector"
+  porst:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
