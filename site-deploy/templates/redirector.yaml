@@ -13,7 +13,7 @@ data:
       #server_name ~^(www\.|)(?<domain>.+)$;
       server_name _;
 
-      rewrite ^.*$ https://$domain$request_uri redirect;
+      rewrite ^.*$ https://$host$request_uri redirect;
     }
 
   {{- range .Values.redirects }}
