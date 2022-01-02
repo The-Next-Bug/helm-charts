@@ -21,9 +21,6 @@ spec:
   
   helm:
     values: |
-#      alertmanager:
-#        enabled: false
-
       grafana:
         ingress:
           enabled: true
@@ -33,12 +30,12 @@ spec:
             cert-manager.io/cluster-issuer: letsencrypt-prod
           
           hosts:
-            - "{{ grafana.host }}" 
+            - "{{ .Values.grafana.host }}" 
 
           tls:
-            - secretName: "{{ grafana.host }}-tls"
+            - secretName: "{{ .Values.grafana.host }}-tls"
               hosts:
-                - "{{ grafana.host }}"
+                - "{{ .Values.grafana.host }}"
             
   syncPolicy:
     automated:
