@@ -38,6 +38,8 @@ spec:
                 - "{{ .Values.grafana.host }}"
             
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true 
