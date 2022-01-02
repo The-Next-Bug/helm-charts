@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd 
+  # This needs to happen after cert-manager and it's crds are installed
+  annotations:
+    {{- include "global.application.annotations" . }}
+    argocd.argoproj.io/sync-wave: "20"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    namespace: promethus
+    server: {{ .Values.spec.destination.server }}
+  source:
+    repoURL: "https://prometheus-community.github.io/helm-charts"
+    chart: "kube-prometheus-stack"
+    targetRevision: "27.0.1"
+  
+  helm:
+    values: |
+#      alertmanager:
+#        enabled: false
+
+      grafana:
+        ingress:
+          enabled: true
+
+          annotations:
+            kubernetes.io/ingress.class: "nginx"
+            cert-manager.io/cluster-issuer: letsencrypt-prod
+          
+          hosts:
+            - "{{ grafana.host }}" 
+
+          tls:
+            - secretName: "{{ grafana.host }}-tls"
+              hosts:
+                - "{{ grafana.host }}"
+            
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
+

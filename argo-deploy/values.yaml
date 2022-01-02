@@ -13,3 +13,7 @@ global:
   application:
     annotations:
       argocd.argoproj.io/sync-options: CreateNamespace=True Prune=True 
+
+grafana:
+  host: grafana.chrissalch.com
+
