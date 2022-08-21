@@ -1,26 +1,26 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: argo-ingress
-  namespace: argocd
-  # This needs to happen after cert-manager and it's crds are installed
-  annotations:
-    {{- include "global.application.annotations" . }}
-    argocd.argoproj.io/sync-wave: "20"
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  destination:
-    namespace: argo-ingress
-    server: {{ .Values.spec.destination.server }}
-  source:
-    repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: {{ .Values.spec.source.targetRevision }}
-    path: "argo-ingress"
- 
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true 
-
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: argo-ingress
+#   namespace: argocd
+#   # This needs to happen after cert-manager and it's crds are installed
+#   annotations:
+#     {{- include "global.application.annotations" . }}
+#     argocd.argoproj.io/sync-wave: "20"
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   destination:
+#     namespace: argo-ingress
+#     server: {{ .Values.spec.destination.server }}
+#   source:
+#     repoURL: {{ .Values.spec.source.repoURL }}
+#     targetRevision: {{ .Values.spec.source.targetRevision }}
+#     path: "argo-ingress"
+#  
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true 
+# 
