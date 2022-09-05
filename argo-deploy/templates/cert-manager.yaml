@@ -28,8 +28,7 @@ spec:
     helm:
       values: |
         # We need to make sure that CRDs are installed
-        cert-manager:
-          installCRDs: "true"
+        installCRDs: "true"
 
   syncPolicy:
     automated:
