@@ -4,6 +4,10 @@ metadata:
   name: cert-manager 
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
+    meta.helm.sh/release-namespace: "default"
+  label:
+    app.kubernetes.io/managed-by: "Helm"
+    meta.helm.sh/release-name: "base-app"
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
