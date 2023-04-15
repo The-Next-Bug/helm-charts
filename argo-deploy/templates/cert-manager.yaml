@@ -5,7 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
     meta.helm.sh/release-namespace: "default"
-  label:
+  labels:
     app.kubernetes.io/managed-by: "Helm"
     meta.helm.sh/release-name: "base-app"
 ---
