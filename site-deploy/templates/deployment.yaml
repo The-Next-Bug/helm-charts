@@ -33,7 +33,7 @@ spec:
           {{- toYaml .env | nindent 12 }}
           {{- end }}
       imagePullSecrets:
-        - name: do-registry
+        - name: shelf
 
 {{- end }}
 {{- end }}
