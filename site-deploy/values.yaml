@@ -8,6 +8,10 @@ domains:
   - name: "thenextbug.com"
     image: "registry.digitalocean.com/shelf/the-next-bug"
 
+  # No API
+  - name: "no.thenextbug.com"
+    image: "registry.digitalocean.com/shelf/no-api"
+
 redirects:
   # Some Old Domains 
   - name: "simplegomoku.com"
